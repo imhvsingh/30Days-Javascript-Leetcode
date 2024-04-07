@@ -1,0 +1,4 @@
+function memoize(fn) {
+    const memo ={}
+    return (...args) => memo[args.join()] ?? (memo[args.join()] = fn(...args)); 
+}
