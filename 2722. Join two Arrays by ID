@@ -1,0 +1,6 @@
+var join = function(arr1, arr2) {
+ const result = {};
+    arr1.forEach(item => result[item.id] = item);
+    arr2.forEach(item => result[item.id] = {...result[item.id], ...item})
+    return Object.values(result)   
+};
