@@ -1,0 +1,26 @@
+var compactObject = function (obj) {
+
+    if (Array.isArray(obj)) {
+        let varArr = [];
+        for (let i = 0; i < obj.length; i++) {
+            if (typeof obj[i] === "object" && obj[i] !== null) {
+                varArr = [...varArr, compactObject(obj[i])];
+            } else {
+                if (obj[i]) {
+                    varArr.push(obj[i]);
+                }
+            }
+        }
+        return varArr;
+    } else {
+        for (let [key, value] of Object.entries(obj)) {
+            if (typeof value === "object" && value !== null) {
+                obj[key] = compactObject(value);
+            } else if (!value) {
+                delete obj[key];
+            }
+        }
+    }
+
+    return obj;
+};
